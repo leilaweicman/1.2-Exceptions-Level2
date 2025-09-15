@@ -1,6 +1,7 @@
 package Exercise1;
 
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Input {
@@ -86,6 +87,18 @@ public class Input {
     }
 
     public static boolean readYesNo(String message) {
-        return false;
+        while (true) {
+            System.out.println(message + " (y/n)");;
+            String input = scanner.nextLine().toLowerCase();
+            try {
+                if (input.equals("y") || input.equals("n") ) {
+                    return input.equals("y");
+                } else {
+                    throw new InvalidInputException("Please enter 'y' or 'n'.");
+                }
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
