@@ -1,7 +1,6 @@
 package Exercise1;
 
 import java.util.InputMismatchException;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Input {
@@ -12,7 +11,9 @@ public class Input {
         while (true) {
             System.out.println(message);
             try {
-                return scanner.nextByte();
+                byte input = scanner.nextByte();
+                scanner.nextLine();
+                return input;
             } catch (InputMismatchException e) {
                 System.out.println("Format error. Please enter a valid Byte.");
                 scanner.nextLine();
@@ -24,7 +25,9 @@ public class Input {
         while (true) {
             System.out.println(message);
             try {
-                return scanner.nextInt();
+                int input = scanner.nextInt();
+                scanner.nextLine();
+                return input;
             } catch (InputMismatchException e) {
                 System.out.println("Format error. Please enter a valid Int.");
                 scanner.nextLine();
@@ -36,7 +39,9 @@ public class Input {
         while (true) {
             System.out.println(message);
             try {
-                return scanner.nextFloat();
+                float input = scanner.nextFloat();
+                scanner.nextLine();
+                return input;
             } catch (InputMismatchException e) {
                 System.out.println("Format error. Please enter a valid Float.");
                 scanner.nextLine();
@@ -48,7 +53,9 @@ public class Input {
         while (true) {
             System.out.println(message);
             try {
-                return scanner.nextDouble();
+                double input = scanner.nextDouble();
+                scanner.nextLine();
+                return input;
             } catch (InputMismatchException e) {
                 System.out.println("Format error. Please enter a valid Double.");
                 scanner.nextLine();
@@ -59,12 +66,14 @@ public class Input {
     public static char readChar(String message) {
         while (true) {
             System.out.println(message);
-            String input = scanner.nextLine();
+            String input = scanner.next().trim();
             try {
                 if (input.length() != 1) {
                     throw new InvalidInputException("Format error. Please enter only one character.");
                 }
-                return input.charAt(0);
+                char res = input.charAt(0);
+                scanner.nextLine();
+                return res;
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             }
@@ -88,11 +97,13 @@ public class Input {
 
     public static boolean readYesNo(String message) {
         while (true) {
-            System.out.println(message + " (y/n)");;
-            String input = scanner.nextLine().toLowerCase();
+            System.out.println(message + " (y/n)");
+            String input = scanner.next().toLowerCase();
             try {
-                if (input.equals("y") || input.equals("n") ) {
-                    return input.equals("y");
+                if (input.equals("y") || input.equals("n")) {
+                    boolean res = input.equals("y");
+                    scanner.nextLine();
+                    return res;
                 } else {
                     throw new InvalidInputException("Please enter 'y' or 'n'.");
                 }
