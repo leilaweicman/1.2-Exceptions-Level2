@@ -56,7 +56,18 @@ public class Input {
     }
 
     public static char readChar(String message) {
-        return '0';
+        while (true) {
+            System.out.println(message);
+            String input = scanner.nextLine();
+            try {
+                if (input.length() != 1) {
+                    throw new InvalidInputException("Format error. Please enter only one character.");
+                }
+                return input.charAt(0);
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static String readString(String message) {
