@@ -71,7 +71,18 @@ public class Input {
     }
 
     public static String readString(String message) {
-        return "";
+        while (true) {
+            System.out.println(message);
+            String input = scanner.nextLine();
+            try {
+                if (input.trim().isEmpty()) {
+                    throw new InvalidInputException("Format error. Please enter a non-empty string.");
+                }
+                return input;
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static boolean readYesNo(String message) {
